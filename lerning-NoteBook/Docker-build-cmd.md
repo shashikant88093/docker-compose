@@ -12,5 +12,10 @@
   - **docker run -p `host_port`:`container_port` -d `image_name`** use for run docker image with port mapping and in detached mode 
   - **docker stop `container_id`** use for stop running container
 
+## Difference between docker start and docker run
+
+- **docker run**: Creates a new container from an image and starts it. It can also accept various options like port mapping, environment variables, etc.
+- **docker start**: Starts an existing stopped container. It does not create a new container; it simply resumes a previously created container that is in a stopped state.
+- **docker run** is used when you want to create a new instance of a container, while **docker start** is used to restart an existing container that has been stopped.
 
 
