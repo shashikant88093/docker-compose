@@ -1,0 +1,4 @@
+# What is a Docker technology?
+# Docker is a platform that allows developers to automate the deployment, scaling, and management of applications using containerization. Containers are lightweight, portable, and self-sufficient units that package an application and its dependencies together, ensuring that it runs consistently across different computing environments.
+
+# Docker provides a way to create, deploy, and run applications in containers, which are isolated from the host system and other containers. This isolation helps to avoid conflicts between different applications and their dependencies, making it easier to develop, test, and deploy software.                                                                                                                           
