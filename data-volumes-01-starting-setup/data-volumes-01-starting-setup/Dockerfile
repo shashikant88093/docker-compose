@@ -1,4 +1,4 @@
-FROM node:14
+FROM node:20
 
 WORKDIR /app
 
@@ -9,5 +9,7 @@ RUN npm install
 COPY . /app
 
 EXPOSE 8000
+
+VOLUME [ "/app/feedback" ]
 
 CMD ["node", "server.js"]

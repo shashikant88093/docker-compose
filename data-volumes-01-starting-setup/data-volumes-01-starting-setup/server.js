@@ -31,15 +31,20 @@ app.post('/create', async (req, res) => {
   const tempFilePath = path.join(__dirname, 'temp', adjTitle + '.txt');
   const finalFilePath = path.join(__dirname, 'feedback', adjTitle + '.txt');
 
+async function moveFileCrossDevice(src, dest) {
+  await fs.copyFile(src, dest);
+  await fs.unlink(src);
+}
+
   await fs.writeFile(tempFilePath, content);
   exists(finalFilePath, async (exists) => {
     if (exists) {
       res.redirect('/exists');
     } else {
-      await fs.rename(tempFilePath, finalFilePath);
+      await moveFileCrossDevice(tempFilePath, finalFilePath);
       res.redirect('/');
     }
   });
 });
 
-app.listen(80);
+app.listen(8000);
