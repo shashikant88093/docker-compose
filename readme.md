@@ -8,4 +8,5 @@
  - Docker Daemon
  - Docker CLI
  - Dockerfile
- - Docker Networks (Working module 4)
+ - Docker Networks
+ - Docker Multistage Builds (module 5)
