@@ -1,11 +1,14 @@
-FROM node:20-apline
+FROM node:20-alpine3.20
 
+ARG PORT=8000
 WORKDIR /app
 
 COPY package*.json ./
 
-RUN npm install
+RUN apk update && apk upgrade && npm install
 
-COPY . ./app
+COPY . .
 
-CMD ["node","index.js"]
+EXPOSE ${PORT}
+
+CMD ["npm","run","dev"]
