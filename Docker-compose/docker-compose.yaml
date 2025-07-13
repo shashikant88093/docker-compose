@@ -1,27 +1,48 @@
-version: '3.8'
-
 services:
   frontend:
-    image: 'frontend'
+    build:
+      context: ./frontend
+    image: frontend
+    command: ["npm", "run","dev"]
     ports:
-      - '3000:3000'
+      - '5173:5173'
+    stdin_open: true
+    tty: true
+    depends_on:
+      - backend
     networks:
       - default
+
   backend:
-    image: 'backend'
+    build:
+      context: ./backend
+    image: backend
+    command: ["node", "index.js"]
     ports:
       - '8000:8000'
-    networks:
-      - default
-    environment:
-      - MONGO_URI=mongodb://admin:admin123@mongoDB:27017
-  mongoDB:
-    image: 'mongoDB'
     volumes:
-      - mongo-data:/data/db
+       - logs:/app/logs
     environment:
       - MONGO_INITDB_ROOT_USERNAME={{ MONGO_INITDB_ROOT_USERNAME }}
       - MONGO_INITDB_ROOT_PASSWORD={{ MONGO_INITDB_ROOT_PASSWORD }}
+    depends_on:
+      - mongodb
+    env_file:
+      - ./.env
+    networks:
+      - default
+
+    # environment:
+      # - MONGO_URI=mongodb://admin:admin123@mongoDB:27017
+
+
+  mongodb:
+    build:
+      context: ./mongodb
+    image: mongodb
+    restart: always
+    volumes:
+      - mongo-data:/data/db
     ports:
       - '27017:27017'
 
@@ -32,6 +53,7 @@ networks:
 
 volumes:
   mongo-data:
+  logs:
     
       
     
